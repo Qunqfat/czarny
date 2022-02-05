@@ -18,6 +18,52 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        #container
+        {
+            width: 920px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #logo
+        {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        #nav
+        {
+            float: left;
+            background-color: lightgray;
+            width: 120px;
+            min-height: 620px;
+            padding: 10px;
+        }
+        #content
+        {
+            float: left;
+            padding: 20px;
+            width: 680px;
+        }
+        #ad
+        {
+            float: left;
+            width: 120px;
+            min-height: 620px;
+            padding: 10px;
+            background-color: lightgray;
+        }
+        #footer
+        {
+            clear: both;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        </style>
 </head>
 <body>
     <div id="app">
@@ -58,6 +104,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/users/list">Użytkownicy</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -74,9 +121,64 @@
                 </div>
             </div>
         </nav>
+@auth
+<div id="container">
+
+    <div id="logo">
+        <h1><a href="/home">Miecze i sandały </a></h1>
+    </div>
+
+    <div id="nav">
+        Życie: 123<br /><br />
+        Energia: 3123<br /><br />
+        Doświadczenie: 12/100 <br /><br />
+        Złoto: 1.000.000 <br /><br />
+    </div>
+
+
+    <div id="content">
+        @yield('myContent')
+
+    </div>
+
+
+    @section('ad')
+    <div id="ad">
+        <a href="master">Teściki</a> <br/>
+        <h3>Postać</h3>
+            <a href="equipment">Ekwipunek</a> <br/>
+            <a href="stats">Statystyki</a> <br/>
+            <a href="rest">Odpoczynek</a> <br/>
+        <h3>Pojedynki</h3>
+            <a href="monsters">Potwory</a> <br />
+            <a href="characters">Postacie</a> <br />
+            <a href="fights">Pojedynki</a><br />
+            <a href="animals">Hodowla</a> <br />
+        <h3>Rynek</h3>
+        <a href="shop">Miejski Rynek</a> <br />
+        <a href="privateHandel">Prywatny Handel</a> <br />
+        <a href="playerShop">Stragany Graczy</a> <br />
+        <h3>Miasto</h3>
+        <a href="news">Wieści</a> <br />
+        <a href="king">Król</a> <br />
+        <a href="jobs">Praca</a> <br />
+        <h3>Gildia</h3>
+        <a href="guilds">Lista Gidlii</a> <br />
+    </div>
+    @show
+
+    <div id="footer">
+        <h2>Miecze i sandały &copy; Wszelkie prawa zastrzeżone</h2>
+    </div>
+
+</div>
+
+@endauth
+
 
         <main class="py-4">
             @yield('content')
+
         </main>
     </div>
 </body>
