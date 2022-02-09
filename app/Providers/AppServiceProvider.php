@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Facade\FlareClient\View;
+// use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // View::share('appName', 'Miecze i sandały');
+        Paginator::useBootstrap();
     }
 }

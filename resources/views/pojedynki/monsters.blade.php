@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('myContent')
 <h1>Potwory</h1>
 <ul>
     <li>ptak</li>

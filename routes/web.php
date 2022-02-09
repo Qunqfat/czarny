@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\UserController;
@@ -21,7 +22,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/list', [UserController::class, 'index'])->middleware('auth');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['can:isAdmin'])->group(function () {
+        Route::get('/users', [UserController::class, 'index']);
+        Route::get('/equipments', [EquipmentController::class, 'index'])
+            ->name('equipment.index');
+        Route::get('/equipments/create', [EquipmentController::class, 'create'])
+            ->name('equipment.create');
+        Route::post('/equipments', [EquipmentController::class, 'store'])
+            ->name('equipment.store');
+        Route::get('/equipments/{equipment}', [EquipmentController::class, 'show'])
+            ->name('equipment.show');
+        Route::get('/equipments/edit/{equipment}', [EquipmentController::class, 'edit'])
+            ->name('equipment.edit');
+        Route::post('/equipments/{equipment}', [EquipmentController::class, 'update'])
+            ->name('equipment.update');
+        Route::delete('/equipments/{equipment}', [EquipmentController::class, 'destroy'])
+            ->name('equipment.destroy');
+    });
+});
+
+
 
 Route::get('/hello', [HelloController::class, 'show']);
 

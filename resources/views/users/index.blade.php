@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('myContent')
 <div class="container">
 <table class="table table-hover">
     <thead>
@@ -26,5 +26,6 @@
       @endforeach
     </tbody>
   </table>
+  {{ $users->links() }}
 </div>
 @endsection
