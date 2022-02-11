@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipment;
+use App\Models\Monsters;
 use Faker\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,9 +34,10 @@ class GameController extends Controller
         return view('postac.rest');
     }
 
-    public function monsters()
+    public function monsters(Monsters $monsters)
     {
-        return view('pojedynki.monsters');
+
+        return view('pojedynki.monsters', ['monsters' => Monsters::all()]);
     }
 
     public function characters()
@@ -54,7 +57,7 @@ class GameController extends Controller
 
     public function shop()
     {
-        return view('rynek.shop');
+        return view('rynek.shop', ['equipment' => Equipment::all()]);
     }
 
     public function privateHandel()

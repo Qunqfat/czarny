@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipment;
+use App\Models\Monsters;
 use Exception;
 use Illuminate\Http\Request;
 
-class EquipmentController extends Controller
+class MonstersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        return view('equipment.index', [
-            'equipment' => Equipment::paginate(8)
+        return view('monsters.index', [
+            'monsters' => Monsters::paginate(8)
         ]);
     }
 
@@ -27,8 +27,8 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        return view('equipment.create', [
-            'equipment' => Equipment::all()
+        return view('monsters.create', [
+            'monsters' => Monsters::all()
         ]);
     }
 
@@ -40,34 +40,34 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        $equipment = new Equipment($request->all());
-        $equipment->save();
-        return redirect(route('equipment.index'));
+        $monsters = new Monsters($request->all());
+        $monsters->save();
+        return redirect(route('monsters.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Equipment  $equipment
+     * @param  \App\Models\Monsters  $monsters
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipment $equipment)
+    public function show(Monsters $monsters)
     {
-        return view('equipment.show', [
-            'equipment' => $equipment
+        return view('monsters.show', [
+            'monsters' => $monsters
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Equipment  $equipment
+     * @param  \App\Models\Monsters  $monsters
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equipment $equipment)
+    public function edit(Monsters $monsters)
     {
-        return view('equipment.edit', [
-            'equipment' => $equipment
+        return view('monsters.edit', [
+            'monsters' => $monsters
         ]);
     }
 
@@ -75,35 +75,26 @@ class EquipmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Equipment  $equipment
+     * @param  \App\Models\Monsters  $monsters
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipment $equipment)
+    public function update(Request $request, Monsters $monsters)
     {
-        $equipment->fill($request->all());
-        $equipment->save();
-        return redirect(route('equipment.index'));
+        $monsters->fill($request->all());
+        $monsters->save();
+        return redirect(route('monsters.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Equipment  $equipment
+     * @param  \App\Models\Monsters  $monsters
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipment $equipment)
+    public function destroy(Monsters $monsters)
     {
-
-        // $flight = Equipment::find($equipment);
-        // $flight->delete();
-        // return response()->json([
-        //     'status' => 'success',
-        //     'equipment' => $equipment
-        // ]);
-
-
         try {
-            $equipment->delete();
+            $monsters->delete();
             return response()->json([
                 'status' => 'success'
             ]);

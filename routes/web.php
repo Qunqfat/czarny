@@ -3,6 +3,7 @@
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\HelloController;
+use App\Http\Controllers\MonstersController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['can:isAdmin'])->group(function () {
         Route::get('/users', [UserController::class, 'index']);
+
         Route::get('/equipments', [EquipmentController::class, 'index'])
             ->name('equipment.index');
         Route::get('/equipments/create', [EquipmentController::class, 'create'])
@@ -39,6 +41,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('equipment.update');
         Route::delete('/equipments/{equipment}', [EquipmentController::class, 'destroy'])
             ->name('equipment.destroy');
+
+        // -------------------------------------------------------------------------------
+
+        Route::get('/monsters', [MonstersController::class, 'index'])
+            ->name('monsters.index');
+        Route::get('/monsters/create', [MonstersController::class, 'create'])
+            ->name('monsters.create');
+        Route::post('/monsters', [MonstersController::class, 'store'])
+            ->name('monsters.store');
+        Route::get('/monsters/{monsters}', [MonstersController::class, 'show'])
+            ->name('monsters.show');
+        Route::get('/monsters/edit/{monsters}', [MonstersController::class, 'edit'])
+            ->name('monsters.edit');
+        Route::post('/monsters/{monsters}', [MonstersController::class, 'update'])
+            ->name('monsters.update');
+        Route::delete('/monsters/{monsters}', [MonstersController::class, 'destroy'])
+            ->name('monsters.destroy');
     });
 });
 
@@ -63,7 +82,7 @@ Route::get('rest', [GameController::class, 'rest'])
     ->name('get.rest')
     ->middleware('auth');
 
-Route::get('monsters', [GameController::class, 'monsters'])
+Route::get('monsters2', [GameController::class, 'monsters'])
     ->name('get.monsters')
     ->middleware('auth');
 

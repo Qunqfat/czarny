@@ -21,7 +21,11 @@
                 <td>{{ $user['name'] }}</td>
                 {{-- <td>{{ $user['surname'] }}</td>
                 <td>{{ $user['phone_number'] }}</td> --}}
-                <td></td>
+                <td>
+                    <a href="#">
+                        <button class="btn btn-primary btn-sm ">zablokuj</button>
+                    </a>
+                </td>
             </tr>
       @endforeach
     </tbody>

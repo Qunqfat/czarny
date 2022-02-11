@@ -4,10 +4,10 @@
 
 <div class="container">
 <div>
-    <center><h2>Lista przedmiotów</h2></center>
+    <center><h2>Lista potworów</h2></center>
 </div>
 <div>
-    <a class="float-right" href="{{ route('equipment.create') }}">
+    <a class="float-right" href="{{ route('monsters.create') }}">
         <button>Dodaj</button>
     </a>
 </div>
@@ -16,37 +16,35 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Typ</th>
         <th scope="col">Nazwa</th>
         <th scope="col">Atak</th>
         <th scope="col">Obrażenia</th>
-        <th scope="col">Cena</th>
-        <th scope="col">Min. Lvl</th>
-        <th scope="col">Ilość</th>
+        <th scope="col">Obrona</th>
+        <th scope="col">Poziom</th>
+        <th scope="col">Życie</th>
         <th scope="col">Akcja</th>
       </tr>
     </thead>
     <tbody>
-        @foreach ($equipment as $equipmen)
+        @foreach ($monsters as $monster)
             <tr>
-                <th scope="row">{{ $equipmen['id'] }}</th>
-                <td>{{ $equipmen['type'] }}</td>
-                <td>{{ $equipmen['name'] }}</td>
-                <td>{{ $equipmen['attack'] }}</td>
-                <td>{{ $equipmen['damage'] }}</td>
-                <td>{{ $equipmen['price'] }}</td>
-                <td>{{ $equipmen['lvl'] }}</td>
-                <td>{{ $equipmen['amount'] }}</td>
+                <th scope="row">{{ $monster['id'] }}</th>
+                <td>{{ $monster['name'] }}</td>
+                <td>{{ $monster['attack'] }}</td>
+                <td>{{ $monster['damage'] }}</td>
+                <td>{{ $monster['defend'] }}</td>
+                <td>{{ $monster['lvl'] }}</td>
+                <td>{{ $monster['life'] }}</td>
                 <td>
-                    <a href="{{ route('equipment.show', $equipmen->id) }}">
+                    <a href="{{ route('monsters.show', $monster->id) }}">
                         <button class="btn btn-primary btn-sm ">P</button>
                     </a>
 
-                    <a href="{{ route('equipment.edit', $equipmen->id) }}">
+                    <a href="{{ route('monsters.edit', $monster->id) }}">
                         <button class="btn btn-success btn-sm ">E</button>
                     </a>
 
-                    <button class="btn btn-danger btn-sm delete" data-id="{{ $equipmen['id'] }}">
+                    <button class="btn btn-danger btn-sm delete" data-id="{{ $monster['id'] }}">
                         X
                     </button>
 
@@ -55,7 +53,7 @@
       @endforeach
     </tbody>
   </table>
-  {{ $equipment->links() }}
+  {{ $monsters->links() }}
 </div>
 
 @endsection
@@ -82,7 +80,7 @@ $(function() {
 
                 $.ajax({
                     method: "DELETE",
-                    url: "http://czarny.test/equipments/" + $(this).data("id")
+                    url: "http://czarny.test/monsters/" + $(this).data("id")
                     // data: { name: "John", location: "Boston" }
                 })
                     .done(function( response ) {

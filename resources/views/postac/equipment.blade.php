@@ -10,3 +10,7 @@
         <li>Spodnie</li><br/><br/>
     </ul>
 @endsection
+
+{{-- @section('javascript')
+ <script>alert('test')</script>
+@endsection --}}

@@ -9,16 +9,20 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    {{-- <script>alert('ala')</script> --}}
-   
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    {{-- `````````````````````````````````````````` --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> <!-- for IE and Android native browser support -->
+    <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
+    {{-- `````````````````````````````````````````` --}}
 
     <style>
         #container
@@ -108,6 +112,7 @@
                                     @can('isAdmin')
                                         <a class="dropdown-item" href="/users">Użytkownicy</a>
                                         <a class="dropdown-item" href="{{ route('equipment.index') }}">Przedmioty</a>
+                                        <a class="dropdown-item" href="{{ route('monsters.index') }}">Potwory</a>
                                     @endcan
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -144,6 +149,10 @@
     <div id="content">
         @yield('myContent')
 
+        <script src="{{ asset('js/app.js') }}"></script>
+
+        @yield('javascript')
+
     </div>
 
 
@@ -155,7 +164,7 @@
             <a href="stats">Statystyki</a> <br/>
             <a href="rest">Odpoczynek</a> <br/>
         <h3>Pojedynki</h3>
-            <a href="monsters">Potwory</a> <br />
+            <a href="monsters2">Potwory</a> <br />
             <a href="characters">Postacie</a> <br />
             <a href="fights">Pojedynki</a><br />
             <a href="animals">Hodowla</a> <br />
@@ -179,12 +188,21 @@
 </div>
 
 @endauth
-
-
-        <main class="py-4">
+       <main class="py-4">
             @yield('content')
 
         </main>
     </div>
+
+
+    {{-- <script src="{{ asset('js/app.js') }}"></script>
+    @yield('javascript') --}}
+
+    {{-- <script type="text/javascript">
+
+
+</script> --}}
+
+
 </body>
 </html>
